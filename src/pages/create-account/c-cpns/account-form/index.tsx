@@ -84,10 +84,10 @@ const AccountForm = (props: IProps) => {
       confirm('金额必须要大于0!')
       return false
     }
-    // if (Object.keys(category).length === 0) {
-    //   confirm('请选择一个类别!')
-    //   return false
-    // }
+    if (category.id === '') {
+      confirm('请选择一个类别!')
+      return false
+    }
     return true
   }
 
@@ -97,6 +97,10 @@ const AccountForm = (props: IProps) => {
       return
     }
     console.log(name, date, money.split(',').join(''))
+  }
+
+  const onClickItem = (item: ICategory) => {
+    setCategory(item)
   }
 
   return (
@@ -148,7 +152,7 @@ const AccountForm = (props: IProps) => {
               currentItem={category}
               isLoading={isLoading}
               categories={categoriesByType}
-              // onClickItem={onClickItem}
+              onClickItem={onClickItem}
             />
           </li>
         </ul>
@@ -164,7 +168,7 @@ const AccountForm = (props: IProps) => {
             记一笔
           </Button>
         ) : (
-          <Button shape="round" className="btn-create" type={'primary'} loading>
+          <Button shape="round" className="btn-create" type="primary" loading>
             加载中
           </Button>
         )}

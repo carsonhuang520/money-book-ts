@@ -6,9 +6,9 @@ import {changeAccountTypeAction} from '@/pages/create-account/store/actionCreato
 
 import {Button} from 'antd'
 import {HeaderWrapper} from './style'
-interface IHeaderProps {
-  onClickType: (type: string) => void
-}
+// interface IHeaderProps {
+//   onClickType: (type: string) => void
+// }
 
 const Header = () => {
   const {type} = useSelector((state: Map<string, string>) => {

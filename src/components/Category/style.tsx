@@ -4,6 +4,7 @@ export const CategoryWrapper = styled.div`
   .category-label {
     padding: 0 20px;
     font-weight: 700;
+    margin-bottom: 1em;
   }
 
   .category-wrapper {

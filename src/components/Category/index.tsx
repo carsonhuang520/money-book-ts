@@ -9,10 +9,18 @@ interface IProps {
   currentItem: ICategory
   categories: ICategory[]
   isLoading: boolean
+  onClickItem: (item: ICategory) => void
 }
 
-const Category = ({currentItem, categories, isLoading}: IProps) => {
-  const onClickItem = (item: ICategory) => {}
+const Category = ({
+  currentItem,
+  categories,
+  isLoading,
+  onClickItem,
+}: IProps) => {
+  const onClickCategory = (item: ICategory) => {
+    onClickItem(item)
+  }
 
   return (
     <CategoryWrapper>
@@ -27,7 +35,7 @@ const Category = ({currentItem, categories, isLoading}: IProps) => {
                 <li
                   key={item.id}
                   className="category-item"
-                  onClick={() => onClickItem(item)}
+                  onClick={() => onClickCategory(item)}
                 >
                   <div
                     className={classNames('category-item-content', {
@@ -44,7 +52,7 @@ const Category = ({currentItem, categories, isLoading}: IProps) => {
                 <li
                   key={item.id}
                   className="category-item"
-                  onClick={() => onClickItem(item)}
+                  onClick={() => onClickCategory(item)}
                 >
                   <div
                     className={classNames('category-item-edit', {

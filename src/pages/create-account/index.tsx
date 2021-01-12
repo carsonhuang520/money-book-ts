@@ -6,13 +6,11 @@ interface ICreateAccountProps {
 
 const CreateAccount = ({message}: ICreateAccountProps) => {
   return (
-    <div className="content">
-      <AccountForm
-        isBtnLoading={false}
-        categories={[{name: '', iconName: '', id: '', type: ''}]}
-        isLoading={false}
-      />
-    </div>
+    <AccountForm
+      isBtnLoading={false}
+      categories={[{name: '', iconName: '', id: '', type: ''}]}
+      isLoading={false}
+    />
   )
 }
 

@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const AccountFormWrapper = styled.div`
+  height: 100%;
+
   .form-wrapper {
     height: 80%;
     //overflow: hidden;
