@@ -1,23 +1,8 @@
-import * as actionTypes from './constants'
+import {combineReducers} from 'redux-immutable'
+import {reducer as accountReducer} from '../pages/create-account/store'
 
-interface IState {
-  type: string
-  navType: string
-}
-
-const defaultState: IState = {
-  type: 'charge',
-  navType: 'account',
-}
-
-function reducer(params: IState = defaultState, action: string): IState {
-  switch (action) {
-    case actionTypes.CHANGE_ACCOUNT_TYPE:
-      return params
-
-    default:
-      return params
-  }
-}
+const reducer = combineReducers({
+  account: accountReducer,
+})
 
 export default reducer

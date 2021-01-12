@@ -1,14 +1,28 @@
+import {useSelector, shallowEqual, useDispatch} from 'react-redux'
 import classNames from 'classnames'
+import {Map} from 'immutable'
+
+import {changeAccountTypeAction} from '@/pages/create-account/store/actionCreators'
 
 import {Button} from 'antd'
 import {HeaderWrapper} from './style'
-
 interface IHeaderProps {
-  type: string
   onClickType: (type: string) => void
 }
 
-const Header = ({type, onClickType}: IHeaderProps) => {
+const Header = () => {
+  const {type} = useSelector((state: Map<string, string>) => {
+    return {
+      type: state.getIn(['account', 'type']),
+    }
+  }, shallowEqual)
+
+  const dispatch = useDispatch()
+
+  const onClickType = (type: string) => {
+    dispatch(changeAccountTypeAction(type))
+  }
+
   return (
     <HeaderWrapper className="header-wrapper">
       <Button
