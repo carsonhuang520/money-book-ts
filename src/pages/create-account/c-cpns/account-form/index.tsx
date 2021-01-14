@@ -11,7 +11,7 @@ import locale from 'antd/es/date-picker/locale/zh_CN'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
 
-import Category from '@/components/Category'
+import Category from '@/components/category'
 import {AccountFormWrapper} from './style'
 
 moment.locale('zh-cn')

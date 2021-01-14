@@ -6,11 +6,12 @@ import {changeAccountTypeAction} from '@/pages/create-account/store/actionCreato
 
 import {Button} from 'antd'
 import {HeaderWrapper} from './style'
-// interface IHeaderProps {
-//   onClickType: (type: string) => void
-// }
+import {Fragment} from 'react'
+interface IProps {
+  pathname: string
+}
 
-const Header = () => {
+const Header = (props: IProps) => {
   const {type} = useSelector((state: Map<string, string>) => {
     return {
       type: state.getIn(['account', 'type']),
@@ -25,20 +26,26 @@ const Header = () => {
 
   return (
     <HeaderWrapper className="header-wrapper">
-      <Button
-        shape="round"
-        className={classNames('btn', {active: type === 'outcome'})}
-        onClick={() => onClickType('outcome')}
-      >
-        支出
-      </Button>
-      <Button
-        shape="round"
-        className={classNames('btn', {active: type === 'income'})}
-        onClick={() => onClickType('income')}
-      >
-        收入
-      </Button>
+      {props.pathname === '/detail' ? (
+        '明细'
+      ) : (
+        <Fragment>
+          <Button
+            shape="round"
+            className={classNames('btn', {active: type === 'outcome'})}
+            onClick={() => onClickType('outcome')}
+          >
+            支出
+          </Button>
+          <Button
+            shape="round"
+            className={classNames('btn', {active: type === 'income'})}
+            onClick={() => onClickType('income')}
+          >
+            收入
+          </Button>
+        </Fragment>
+      )}
     </HeaderWrapper>
   )
 }

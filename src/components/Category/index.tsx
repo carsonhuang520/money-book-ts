@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 
-import Loading from '../Loading'
+import Loading from '../loading'
 import Icon from '../Icon'
 import {CategoryWrapper} from './style'
 import {ICategory} from '@/libs/models'

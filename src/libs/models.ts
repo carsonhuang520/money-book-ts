@@ -20,3 +20,12 @@ export interface INewCategory {
   name: string
   type: string
 }
+
+export interface IAction {
+  type: string
+  payload: IAccount[]
+}
+
+export interface IList {
+  [key: string]: IAccount[]
+}

@@ -447,44 +447,44 @@ export const newCategories: INewCategory[] = [
   },
 ]
 
-// export const setItems = (param) => {
-//   if (!param) {
-//     if (!localStorage.getItem('items')) {
-//       localStorage.setItem('items', JSON.stringify(items))
-//     }
-//   } else {
-//     localStorage.setItem('items', JSON.stringify(param))
-//   }
-// }
+export const setItems = (param: IAccount[]): void => {
+  if (!param) {
+    if (!localStorage.getItem('items')) {
+      localStorage.setItem('items', JSON.stringify(items))
+    }
+  } else {
+    localStorage.setItem('items', JSON.stringify(param))
+  }
+}
 
-// export const setCategories = (param) => {
-//   if (!param) {
-//     if (!localStorage.getItem('categories')) {
-//       localStorage.setItem('categories', JSON.stringify(categories))
-//     }
-//   } else {
-//     localStorage.setItem('categories', JSON.stringify(param))
-//   }
-// }
+export const setCategories = (param: ICategory[]): void => {
+  if (!param) {
+    if (!localStorage.getItem('categories')) {
+      localStorage.setItem('categories', JSON.stringify(categories))
+    }
+  } else {
+    localStorage.setItem('categories', JSON.stringify(param))
+  }
+}
 
-// export const setNewCategory = (param) => {
-//   if (!param) {
-//     if (!localStorage.getItem('newCategory')) {
-//       localStorage.setItem('newCategory', JSON.stringify(newCategory))
-//     }
-//   } else {
-//     localStorage.setItem('newCategory', JSON.stringify(param))
-//   }
-// }
+export const setNewCategory = (param: INewCategory[]): void => {
+  if (!param) {
+    if (!localStorage.getItem('newCategory')) {
+      localStorage.setItem('newCategory', JSON.stringify(newCategories))
+    }
+  } else {
+    localStorage.setItem('newCategory', JSON.stringify(param))
+  }
+}
 
-// export const getItems = () => {
-//   return JSON.parse(localStorage.getItem('items'))
-// }
+export const getItems = (): IAccount[] => {
+  return JSON.parse(localStorage.getItem('items') || '[]')
+}
 
-// export const getCategories = () => {
-//   return JSON.parse(localStorage.getItem('categories'))
-// }
+export const getCategories = (): ICategory[] => {
+  return JSON.parse(localStorage.getItem('categories') || '[]')
+}
 
-// export const getNewCategory = () => {
-//   return JSON.parse(localStorage.getItem('newCategory'))
-// }
+export const getNewCategory = (): INewCategory[] => {
+  return JSON.parse(localStorage.getItem('newCategory') || '[]')
+}

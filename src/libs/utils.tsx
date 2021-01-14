@@ -1,5 +1,6 @@
 import {Modal} from 'antd'
 import {QuestionCircleOutlined} from '@ant-design/icons'
+import {IAccount, ICategory, IList} from './models'
 
 export const getYearAndMonth = (type: string): string => {
   const date: Date = new Date()
@@ -30,3 +31,28 @@ export const confirm = (title: string, okFn?: any) => {
     onOk: okFn ? okFn : () => {},
   })
 }
+
+export const flatternItems = (items: IAccount[]): IList => {
+  let list: IList = {}
+  items.forEach((item: IAccount) => {
+    if (!list[item.date]) {
+      list[item.date] = []
+    }
+    list[item.date].push(item)
+  })
+  return list
+}
+
+export const flatternCategory = (
+  categories: ICategory[]
+): {[key: string]: ICategory} => {
+  return categories.reduce(
+    (prev: {[key: string]: ICategory}, item: ICategory) => {
+      prev[item.id] = item
+      return prev
+    },
+    {}
+  )
+}
+
+export const getTotal () => {}
