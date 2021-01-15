@@ -8,11 +8,7 @@ import Calendar from '@/components/calendar'
 import EmptyData from '@/components/empty-data'
 import PriceList from './c-cpns/price-list'
 
-interface IProps {
-  message: string
-}
-
-const AccountList = ({message}: IProps) => {
+const AccountList = () => {
   const [accountList, setAccountList] = useState<IAccount[]>(items)
   const [filterList, setFilterList] = useState<IAccount[]>([])
   const [dateString, setDateString] = useState<string>(getYearAndMonth('month'))
@@ -21,6 +17,7 @@ const AccountList = ({message}: IProps) => {
     const list: IAccount[] = accountList.filter(
       (item: IAccount) => item.monthCategory.indexOf(dateString) >= 0
     )
+    list.sort((a: IAccount, b: IAccount) => b.timestamp - a.timestamp)
     setFilterList(list)
   }, [dateString, accountList])
 

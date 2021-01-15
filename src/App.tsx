@@ -8,9 +8,9 @@ import store from './store'
 
 import Footer from './components/footer'
 import Header from './components/header'
+import Loading from './components/loading'
 
 const App = () => {
-  const onClickNav = useCallback((type: string) => {}, [])
   const location = useLocation()
 
   const {pathname} = location
@@ -19,9 +19,9 @@ const App = () => {
     <Provider store={store}>
       <Header pathname={pathname} />
       <main className="main-wrapper">
-        <Suspense fallback={<div>hello</div>}>{renderRoutes(routes)}</Suspense>
+        <Suspense fallback={<Loading />}>{renderRoutes(routes)}</Suspense>
       </main>
-      <Footer type="jizhang" onClickNav={onClickNav} />
+      <Footer type="jizhang" />
     </Provider>
   )
 }

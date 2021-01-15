@@ -21,6 +21,7 @@ const Calendar = ({date, onChangeDate}: IProps) => {
         picker="month"
         value={moment(date, dateFormat)}
         locale={locale}
+        allowClear={false}
         onChange={(date, dateString) => onChangeDate(dateString)}
       />
     </CalendarWrapper>

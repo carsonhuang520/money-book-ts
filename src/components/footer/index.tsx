@@ -1,47 +1,34 @@
 import classNames from 'classnames'
+import {NavLink} from 'react-router-dom'
 
 import Icon from '../Icon'
 import {FooterWrapper} from './style'
 
 interface IFooterProps {
   type: string
-  onClickNav: (type: string) => void
 }
 
-const Footer = ({type, onClickNav}: IFooterProps) => {
-  const clickNav = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    type: string
-  ) => {
-    e.preventDefault()
-    onClickNav(type)
-  }
+const Footer = ({type}: IFooterProps) => {
   return (
     <FooterWrapper className="nav-wrapper">
-      <a
+      <NavLink
         className={classNames({active: type === 'account'})}
-        href={'/'}
-        onClick={(e) => clickNav(e, 'account')}
+        to="/account"
       >
         <Icon name={'jizhang'} />
         <span>记账</span>
-      </a>
-      <a
-        className={classNames({active: type === 'detail'})}
-        href={'/'}
-        onClick={(e) => clickNav(e, 'detail')}
-      >
+      </NavLink>
+      <NavLink className={classNames({active: type === 'detail'})} to="/detail">
         <Icon name={'mingxi'} />
         <span>明细</span>
-      </a>
-      <a
+      </NavLink>
+      <NavLink
         className={classNames({active: type === 'statistical'})}
-        href={'/'}
-        onClick={(e) => clickNav(e, 'statistical')}
+        to="/statistical"
       >
         <Icon name={'baogao'} />
         <span>统计</span>
-      </a>
+      </NavLink>
     </FooterWrapper>
   )
 }
