@@ -1,4 +1,4 @@
-import React, {Suspense, useCallback} from 'react'
+import React, {Suspense} from 'react'
 import {Provider} from 'react-redux'
 import {useLocation} from 'react-router-dom'
 

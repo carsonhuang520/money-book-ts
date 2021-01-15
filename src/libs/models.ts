@@ -33,3 +33,9 @@ export interface IList {
 export interface ICategoryType {
   [key: string]: ICategory
 }
+
+export interface IAccountByType {
+  [key: string]: {
+    [key: string]: IAccount[]
+  }
+}
