@@ -29,3 +29,7 @@ export interface IAction {
 export interface IList {
   [key: string]: IAccount[]
 }
+
+export interface ICategoryType {
+  [key: string]: ICategory
+}

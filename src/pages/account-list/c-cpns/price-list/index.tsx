@@ -1,6 +1,7 @@
+import {ReactElement, useState} from 'react'
+
 import {IAccount, ICategory, IList} from '@/libs/models'
 import {flatternItems} from '@/libs/utils'
-import {ReactElement} from 'react'
 import PriceItem from '../price-item'
 import {PriceListWrapper} from './style'
 
@@ -11,6 +12,8 @@ interface IProps {
 }
 
 const PriceList = ({categories, items, onDeleteItem}: IProps) => {
+  const [currentId, setCurrentId] = useState<string>('')
+
   const list: IList = flatternItems(items)
   const times: string[] = Object.keys(list)
 
@@ -24,6 +27,8 @@ const PriceList = ({categories, items, onDeleteItem}: IProps) => {
               categories={categories}
               time={time}
               list={list[time]}
+              currentId={currentId}
+              changeCurrentId={(id: string) => setCurrentId(id)}
               onDeleteItem={(item) => onDeleteItem(item)}
             />
           )

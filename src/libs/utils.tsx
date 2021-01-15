@@ -1,6 +1,6 @@
 import {Modal} from 'antd'
 import {QuestionCircleOutlined} from '@ant-design/icons'
-import {IAccount, ICategory, IList} from './models'
+import {IAccount, ICategory, ICategoryType, IList} from './models'
 
 export const getYearAndMonth = (type: string): string => {
   const date: Date = new Date()
@@ -14,7 +14,7 @@ export const getYearAndMonth = (type: string): string => {
     : `${year}-${month >= 10 ? month : '0' + month}`
 }
 
-export const toThousandFilter = (num: string): string => {
+export const toThousandFilter = (num: string | number): string => {
   return (+num || 0)
     .toString()
     .replace(/^-?\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
@@ -43,16 +43,23 @@ export const flatternItems = (items: IAccount[]): IList => {
   return list
 }
 
-export const flatternCategory = (
-  categories: ICategory[]
-): {[key: string]: ICategory} => {
-  return categories.reduce(
-    (prev: {[key: string]: ICategory}, item: ICategory) => {
-      prev[item.id] = item
-      return prev
-    },
-    {}
-  )
+export const flatternCategory = (categories: ICategory[]): ICategoryType => {
+  return categories.reduce((prev: ICategoryType, item: ICategory) => {
+    prev[item.id] = item
+    return prev
+  }, {})
 }
 
-export const getTotal () => {}
+export const getTotal = (
+  list: IAccount[],
+  categoriesFlattern: ICategoryType
+): number => {
+  return list.reduce((prev: number, cur: IAccount) => {
+    prev =
+      prev +
+      (categoriesFlattern[cur.cid].type === 'outcome'
+        ? -1 * cur.price
+        : cur.price)
+    return prev
+  }, 0)
+}
