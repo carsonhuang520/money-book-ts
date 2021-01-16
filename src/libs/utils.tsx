@@ -1,4 +1,4 @@
-import {Modal} from 'antd'
+import {Modal, message} from 'antd'
 import {QuestionCircleOutlined} from '@ant-design/icons'
 import {
   IAccount,
@@ -86,4 +86,8 @@ export const getTotal = (
         : cur.price)
     return prev
   }, 0)
+}
+
+export const success = (title: string): void => {
+  message.success(title)
 }

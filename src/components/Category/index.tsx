@@ -1,9 +1,11 @@
 import classNames from 'classnames'
+import {useHistory} from 'react-router-dom'
+
+import {ICategory} from '@/libs/models'
 
 import Loading from '../loading'
 import Icon from '../Icon'
 import {CategoryWrapper} from './style'
-import {ICategory} from '@/libs/models'
 
 interface IProps {
   currentItem: ICategory
@@ -18,7 +20,12 @@ const Category = ({
   isLoading,
   onClickItem,
 }: IProps) => {
+  const history = useHistory()
+
   const onClickCategory = (item: ICategory) => {
+    if (item.name === '编辑') {
+      history.push('/edit')
+    }
     onClickItem(item)
   }
 
