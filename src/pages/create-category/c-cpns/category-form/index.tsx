@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
-import {INewCategory} from '@/libs/models'
-import {confirm} from '@/libs/utils'
+import {ICategory, INewCategory} from '@/libs/models'
+import {confirm, ID} from '@/libs/utils'
 
 import {Input, Button} from 'antd'
 import IconList from '../icon-list'
@@ -10,9 +10,10 @@ import {CategoryFormWrapper} from './style'
 interface IProps {
   type: string
   categories: INewCategory[]
+  onCreateCategory: (item: ICategory) => void
 }
 
-const CategoryForm = ({type, categories}: IProps) => {
+const CategoryForm = ({type, categories, onCreateCategory}: IProps) => {
   const [name, setName] = useState<string>('')
   const [current, setCurrent] = useState<INewCategory>({
     name: '',
@@ -40,11 +41,24 @@ const CategoryForm = ({type, categories}: IProps) => {
     return true
   }
 
-  const onCreateCategory = (): void => {
+  const getNewItem = (name: string, iconName: string): ICategory => {
+    const id = ID()
+    const newItem = {
+      name,
+      id,
+      type,
+      iconName,
+    }
+    return newItem
+  }
+
+  const onAddCategory = (): void => {
     const isValid = validateForm(name, current)
     if (!isValid) {
       return
     }
+    const item = getNewItem(name, current.name)
+    onCreateCategory(item)
   }
 
   return (
@@ -80,7 +94,7 @@ const CategoryForm = ({type, categories}: IProps) => {
             shape="round"
             className={'btn-create'}
             type={'primary'}
-            onClick={onCreateCategory}
+            onClick={onAddCategory}
           >
             确定
           </Button>

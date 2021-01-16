@@ -9,7 +9,7 @@ import {
   getYearAndMonth,
   toThousandFilter,
 } from '@/libs/utils'
-import {items, categories} from '@/libs/localStorage'
+import {categories, getItems} from '@/libs/localStorage'
 import {changeAccountTypeAction} from '../create-account/store/actionCreators'
 
 import {Modal} from 'antd'
@@ -41,7 +41,7 @@ const Statistical = () => {
   }, shallowEqual)
 
   useEffect(() => {
-    const list: IAccount[] = items.filter(
+    const list: IAccount[] = getItems().filter(
       (item: IAccount) => item.monthCategory.indexOf(dateString) >= 0
     )
     list.sort((a: IAccount, b: IAccount) => b.timestamp - a.timestamp)

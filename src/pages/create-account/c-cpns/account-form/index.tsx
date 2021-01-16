@@ -2,9 +2,15 @@ import React, {useState} from 'react'
 import {shallowEqual, useSelector} from 'react-redux'
 import {Map} from 'immutable'
 
-import {ICategory} from '@/libs/models'
-import {getYearAndMonth, toThousandFilter, confirm} from '@/libs/utils.tsx'
-import {categories} from '@/libs/localStorage'
+import {IAccount, ICategory} from '@/libs/models'
+import {
+  getYearAndMonth,
+  toThousandFilter,
+  confirm,
+  ID,
+  success,
+} from '@/libs/utils'
+import {getCategories, getItems, setItems} from '@/libs/localStorage'
 
 import {Input, DatePicker, Button} from 'antd'
 import locale from 'antd/es/date-picker/locale/zh_CN'
@@ -42,7 +48,7 @@ const AccountForm = (props: IProps) => {
     }
   }, shallowEqual)
 
-  const categoriesByType: ICategory[] = categories.filter(
+  const categoriesByType: ICategory[] = getCategories().filter(
     (category: ICategory) => category.type === type
   )
 
@@ -91,12 +97,32 @@ const AccountForm = (props: IProps) => {
     return true
   }
 
+  const getNewItem = (): IAccount => {
+    const newId = ID()
+    const monthCategory = date.substring(0, date.lastIndexOf('-'))
+    const timestamp = new Date(date).getTime()
+    const newItem = {
+      name,
+      date,
+      price: parseInt(money.split(',').join('')),
+      id: newId,
+      timestamp,
+      monthCategory,
+      cid: category.id,
+    }
+    return newItem
+  }
+
   const onCreateAccount = () => {
     const isValidate: boolean = validateForm()
     if (!isValidate) {
       return
     }
-    console.log(name, date, money.split(',').join(''))
+    const item: IAccount = getNewItem()
+    const items = getItems()
+    items.push(item)
+    setItems(items)
+    success('已保存')
   }
 
   const onClickItem = (item: ICategory) => {

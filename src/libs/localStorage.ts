@@ -447,7 +447,7 @@ export const newCategories: INewCategory[] = [
   },
 ]
 
-export const setItems = (param: IAccount[]): void => {
+export const setItems = (param?: IAccount[]): void => {
   if (!param) {
     if (!localStorage.getItem('items')) {
       localStorage.setItem('items', JSON.stringify(items))
@@ -457,7 +457,7 @@ export const setItems = (param: IAccount[]): void => {
   }
 }
 
-export const setCategories = (param: ICategory[]): void => {
+export const setCategories = (param?: ICategory[]): void => {
   if (!param) {
     if (!localStorage.getItem('categories')) {
       localStorage.setItem('categories', JSON.stringify(categories))
@@ -467,7 +467,7 @@ export const setCategories = (param: ICategory[]): void => {
   }
 }
 
-export const setNewCategory = (param: INewCategory[]): void => {
+export const setNewCategory = (param?: INewCategory[]): void => {
   if (!param) {
     if (!localStorage.getItem('newCategory')) {
       localStorage.setItem('newCategory', JSON.stringify(newCategories))

@@ -2,7 +2,7 @@ import React, {Fragment, useState, useEffect, useCallback} from 'react'
 import {useSelector, shallowEqual} from 'react-redux'
 import {Map} from 'immutable'
 
-import {categories} from '@/libs/localStorage'
+import {getCategories, setCategories} from '@/libs/localStorage'
 
 import {ICategory} from '@/libs/models'
 import {success} from '@/libs/utils'
@@ -19,7 +19,7 @@ const EditCategory = () => {
   }, shallowEqual)
 
   useEffect(() => {
-    const newCategories = categories.filter(
+    const newCategories = getCategories().filter(
       (item: ICategory) => item.type === type && item.name !== '编辑'
     )
     setCategoriesFilter(newCategories)
@@ -31,6 +31,7 @@ const EditCategory = () => {
         (e: ICategory) => e.id !== item.id
       )
       success('删除成功!')
+      setCategories(newCategories)
       setCategoriesFilter(newCategories)
     },
     [categoriesFilter]

@@ -1,15 +1,15 @@
 import {Fragment, useCallback, useState, useEffect} from 'react'
 
 import {IAccount} from '@/libs/models'
-import {getYearAndMonth} from '@/libs/utils'
-import {categories, items} from '@/libs/localStorage'
+import {getYearAndMonth, success} from '@/libs/utils'
+import {categories, getItems, setItems} from '@/libs/localStorage'
 
 import Calendar from '@/components/calendar'
 import EmptyData from '@/components/empty-data'
 import PriceList from './c-cpns/price-list'
 
 const AccountList = () => {
-  const [accountList, setAccountList] = useState<IAccount[]>(items)
+  const [accountList, setAccountList] = useState<IAccount[]>(getItems())
   const [filterList, setFilterList] = useState<IAccount[]>([])
   const [dateString, setDateString] = useState<string>(getYearAndMonth('month'))
 
@@ -28,7 +28,9 @@ const AccountList = () => {
   const onDeleteItem = useCallback(
     (item: IAccount): void => {
       const list = accountList.filter((e: IAccount) => e.id !== item.id)
+      setItems(list)
       setAccountList(list)
+      success('删除成功')
     },
     [accountList]
   )
